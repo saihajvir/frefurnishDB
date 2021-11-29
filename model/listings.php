@@ -107,7 +107,7 @@ function AddListing(
           ":details"=>$details,
         ));
       
-      var_dump($stmt);
+      //var_dump($stmt);
   
       return $db->lastInsertId();
   }

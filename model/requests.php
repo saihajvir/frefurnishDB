@@ -61,7 +61,7 @@ function GetRequestsByListingId($listing_id=null)
 //   return $stmt->fetchAll(PDO::FETCH_CLASS);
 // }
 
-function GetRequestsByFuid($fuid=null)
+function GetWorkerRequestsByFuid($fuid=null)
 {
   global $db;
 
@@ -80,24 +80,24 @@ function GetRequestsByFuid($fuid=null)
   return $stmt->fetchAll(PDO::FETCH_CLASS);
 }
 
-// function GetDonorRequestsByFuid($fuid=null, $worker=null)
-// {
-//   global $db;
+function GetDonorRequestsByFuid($fuid=null)
+{
+  global $db;
 
-//   $stmt = $db->prepare("SELECT *, `donor`.`name` AS `dname`, `worker`.`name` AS `wname` FROM `requests`
-//   LEFT JOIN `listings` ON `listings`.`id` = `requests`.`listing_id`
-//   LEFT JOIN `users` AS `donor` ON `listings`.`fuid` = `donor`.`fuid`
-//   LEFT JOIN `users` AS `worker` ON `requests`.`fuid` = `worker`.`fuid`
-//   WHERE `donor`.`fuid` = :fuid;", array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+  $stmt = $db->prepare("SELECT *, `donor`.`name` AS `dname`, `worker`.`name` AS `wname` FROM `requests`
+  LEFT JOIN `listings` ON `listings`.`id` = `requests`.`listing_id`
+  LEFT JOIN `users` AS `donor` ON `listings`.`fuid` = `donor`.`fuid`
+  LEFT JOIN `users` AS `worker` ON `requests`.`fuid` = `worker`.`fuid`
+  WHERE `donor`.`fuid` = :fuid;", array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
 
-//   $stmt->execute
-//   (
-//     array(":fuid"=>$fuid, ":worker"=>$worker)
-//   );
-//   // var_dump($stmt);
+  $stmt->execute
+  (
+    array(":fuid"=>$fuid)
+  );
+  // var_dump($stmt);
   
-//   return $stmt->fetchAll(PDO::FETCH_CLASS);
-// }
+  return $stmt->fetchAll(PDO::FETCH_CLASS);
+}
 
 
 // function GetRequestsByFuid($fuid=null)

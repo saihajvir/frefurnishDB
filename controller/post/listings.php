@@ -13,7 +13,7 @@ if(
         $_POST['details']
     )
 ) {
-    AddListing(
+    echo json_encode(AddListing(
         $_POST['fuid'],
         $_POST['listingName'],
         $_POST['listingDescription'],
@@ -24,9 +24,9 @@ if(
         $_POST['image'],
         $_POST['status'],
         $_POST['details']
-    );
+    ));
     
-    echo 'added listing!';
+    //echo 'added listing!';
 }
 
 ?>
