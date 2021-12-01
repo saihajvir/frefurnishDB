@@ -65,7 +65,7 @@ function GetWorkerRequestsByFuid($fuid=null)
 {
   global $db;
 
-  $stmt = $db->prepare("SELECT *, `donor`.`name` AS `dname`, `worker`.`name` AS `wname` FROM `requests`
+  $stmt = $db->prepare("SELECT *, `donor`.`name` AS `dname`, `worker`.`name` AS `wname`, `requests`.`id` AS `rid`, `requests`.`status` AS `rstatus` FROM `requests`
   LEFT JOIN `listings` ON `listings`.`id` = `requests`.`listing_id`
   LEFT JOIN `users` AS `donor` ON `listings`.`fuid` = `donor`.`fuid`
   LEFT JOIN `users` AS `worker` ON `requests`.`fuid` = `worker`.`fuid`
